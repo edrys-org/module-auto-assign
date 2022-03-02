@@ -1,30 +1,28 @@
-# Edrys Module Template
+# Edrys Auto-Assign Module
 
-This is a basic bare-bones Edrys Module, it is a good staring point for creating your own modules.
+This module allows you to automatically assign students to stations, instead of having to manually drag students in and out. It will pick students from the Lobby and return them one by one into the station at a specified interval.
 
-- Visit the [Edrys Modules documentation](https://github.com/edrys-org/edrys/blob/main/docs/Modules.md) for more infromation
-- Click "Use this template" in the top right to get started
+What teachers see:
+<div align="center">
+<img src="screen-teacher.png" style="width: 90%"/>
+</div>
 
 
-## Tech Stack
+What students in the station see (to let them know how much time remaining they have):
+<div align="center">
+<img src="screen-student.png" style="width: 90%"/>
+</div>
 
-While Modules can be written in any combination of frontend technologies, we use and recommend the following:
+## Usage
 
-- [Alpine.js](https://alpinejs.dev/) for UI (An alternative to JQuery, React or Vue)
-- [Water.css](https://watercss.kognise.dev/) for styles (A tiny CSS reset with no classes)
-- [Open Iconic](https://useiconic.com/open) for icons
+Simply use this URL to add the module to your class:
 
-This combination results in lightweight, fast modules with very easy to read code that is largely free of framework boilerplate, and requires no build step. You also don't need to spend any time learning these frameworks as they are very easy to pick up.
+```
+https://edrys-org.github.io/module-auto-assign/
+```
 
-## Development
+The module is fully configurable using the UI by any teacher in the class, on a per-station basis.
 
-Serve the module on localhost and add it to an Edrys class, then use any editor to modify the module. We recommend:
+## Implementation details
 
-- [VS Code Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) which allows you to see your changes live as you make them
-- [VS Code Alpine.js Intellisense](https://marketplace.visualstudio.com/items?itemName=adrianwilczynski.alpine-js-intellisense)
-
-## Deployment
-
-To use the module, you need to serve it from somewhere and paste its link into your Edrys class settings. One convenient solution is [GitHub Pages](https://pages.github.com/). Alternatives includes Netlify, GitLab pages, or placing the module in the Edrys static directory.
-
-When releasing a module on GitHub, you can tag it with `edrys` and `edrys-module` to make it easy for others to find.
+This module works in a distributed way, where each station picks its own students at the specified interval. If you have more than one station, as they don't communicate with each other, the module relies on differences in time interval offsets to avoid any conflicts where the same student might get picked twice. In the future, inter-station comms maybe implemented to allow calcualting the exact time a student will get access and display that to every waiting student.

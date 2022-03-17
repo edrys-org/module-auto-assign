@@ -34,7 +34,10 @@
             <hr />
 
             <form x-data="{ state: { running: false, duration: 5, count: 1, strategy: 'roundrobin', lastAssignment: 0 }, 
-                    interval: {}, timeSinceLastAssignment: 0, onStateUpdate: ()=>{} }" x-init="() => {
+                            interval: {}, timeSinceLastAssignment: 0, onStateUpdate: ()=>{} }" 
+                            
+                            
+                x-init="() => { Edrys.onReady(() => {
                     onStateUpdate = (s) => {
                         state = s
                         function assign() {
@@ -119,7 +122,8 @@
                             }
                         })
                     }
-                }" x-on:submit.prevent="() => {
+
+                })}" x-on:submit.prevent="() => {
 
                     state.running = !state.running
 

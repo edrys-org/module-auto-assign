@@ -39,7 +39,7 @@
                         state = s
                         function assign() {
                             state.lastAssignment = new Date().getTime()
-                            localStorage.setItem(`${edrys.class_id}-state`, JSON.stringify(s))
+                            Edrys.setItem('state', JSON.stringify(s))
                             edrys.sendMessage('response:state', JSON.stringify(s))
 
                             // Remove existing students, if there are more candidates to consider
@@ -85,7 +85,7 @@
                     if (edrys.role == 'station')
                     {
                         try {
-                            state = { ...state, ...JSON.parse(localStorage.getItem(`${edrys.class_id}-state`))}
+                            state = { ...state, ...JSON.parse(Edrys.getItem('state'))}
                             
                         } catch (error) {}
                         state.lastAssignment = 0
